@@ -77,3 +77,10 @@ class Client:
         self.last_weights = weights
         return weights, avg_loss
     
+
+def clients_subset(clients, num_participants,rng):
+
+    indices = rng.permutation(len(clients))
+    selected_indices = indices[:num_participants]
+    return [clients[i] for i in selected_indices]
+    
