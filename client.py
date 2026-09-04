@@ -18,11 +18,13 @@ class Client:
         self.dataloader =  DataLoader(dataset, shuffle=True, batch_size=batch_size)
         self.device = device
 
+
         self.local_epochs = local_epochs
         self.local_lr = local_lr
 
         self.last_gradient = None
         self.last_weights = None
+        self.last_batch = None
         self.model = None
 
     
@@ -32,14 +34,21 @@ class Client:
         
         
         
-    def _train_fedsgd(self):
+    def _batch_for_indices(self, sample_indices=None):
+        if sample_indices is None:
+            return next(iter(self.dataloader))
+        rows = [self.dataset[int(index)] for index in sample_indices]
+        if not rows:
+            raise ValueError("sample_indices cannot be empty")
+        return torch.stack([row[0] for row in rows]), torch.stack([row[1] for row in rows])
+
+    def _compute_fedsgd_update(self, sample_indices=None):
 
         self.model.train()
         loss_fn = nn.CrossEntropyLoss()
 
-        x, y = next(iter(self.dataloader))
+        x, y = self._batch_for_indices(sample_indices)
         x, y = x.to(self.device), y.to(self.device)
-
         self.model.zero_grad()
         output = self.model(x)
         loss = loss_fn(output, y)
@@ -50,8 +59,22 @@ class Client:
             for name, param in self.model.named_parameters()
         }
 
+        return gradients, loss.item(), (x.detach().clone(), y.detach().clone())
+
+    def _train_fedsgd(self, sample_indices=None):
+        """Plain FedSGD: expose the update for the baseline attacker."""
+        gradients, loss, batch = self._compute_fedsgd_update(sample_indices)
         self.last_gradient = gradients
-        return gradients, loss.item()
+        self.last_batch = batch
+        return gradients, loss
+
+    def train_fedsgd_secure(self, aggregation_session, weight=1.0, sample_indices=None):
+        """Submit privately and return metadata only, never an individual update."""
+        self.last_gradient = None
+        self.last_batch = None
+        gradients, loss, _ = self._compute_fedsgd_update(sample_indices)
+        aggregation_session.submit(self.client_id, gradients, weight=weight)
+        return loss
     
     def _train_fedavg(self):
 
@@ -83,4 +106,3 @@ def clients_subset(clients, num_participants,rng):
     indices = rng.permutation(len(clients))
     selected_indices = indices[:num_participants]
     return [clients[i] for i in selected_indices]
-    

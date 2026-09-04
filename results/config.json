@@ -1,0 +1,188 @@
+[
+  {
+    "seed": 42,
+    "num_rounds": 2,
+    "batch_size": 1,
+    "target_client_id": 0,
+    "attack_rounds": [
+      0
+    ],
+    "aggregation_mode": "plain",
+    "attack_mode": "honest",
+    "defense_mode": "none",
+    "dlg_iterations": 300,
+    "dlg_learning_rate": 0.1,
+    "dlg_rounds": [
+      0
+    ],
+    "attack_success_threshold": 1.0,
+    "zero_gradient_threshold": 1e-08,
+    "probe_count": 16,
+    "probe_dead_relu_threshold": 0.95,
+    "probe_gradient_threshold": 1e-08,
+    "output_dir": "results",
+    "min_cohort_size": 2,
+    "suppression_bias": -100.0,
+    "learning_rate": 0.01,
+    "local_epochs": 1,
+    "architecture_version": "NetflowClassifier-v1",
+    "loss_identifier": "CrossEntropyLoss",
+    "scenario_name": "A_plain_honest",
+    "run_dlg": true
+  },
+  {
+    "seed": 42,
+    "num_rounds": 2,
+    "batch_size": 1,
+    "target_client_id": 0,
+    "attack_rounds": [
+      0
+    ],
+    "aggregation_mode": "ideal_sa",
+    "attack_mode": "honest",
+    "defense_mode": "none",
+    "dlg_iterations": 300,
+    "dlg_learning_rate": 0.1,
+    "dlg_rounds": [
+      0
+    ],
+    "attack_success_threshold": 1.0,
+    "zero_gradient_threshold": 1e-08,
+    "probe_count": 16,
+    "probe_dead_relu_threshold": 0.95,
+    "probe_gradient_threshold": 1e-08,
+    "output_dir": "results",
+    "min_cohort_size": 2,
+    "suppression_bias": -100.0,
+    "learning_rate": 0.01,
+    "local_epochs": 1,
+    "architecture_version": "NetflowClassifier-v1",
+    "loss_identifier": "CrossEntropyLoss",
+    "scenario_name": "B_sa_honest",
+    "run_dlg": true
+  },
+  {
+    "seed": 42,
+    "num_rounds": 2,
+    "batch_size": 1,
+    "target_client_id": 0,
+    "attack_rounds": [
+      0
+    ],
+    "aggregation_mode": "ideal_sa",
+    "attack_mode": "gradient_suppression",
+    "defense_mode": "none",
+    "dlg_iterations": 300,
+    "dlg_learning_rate": 0.1,
+    "dlg_rounds": [
+      0
+    ],
+    "attack_success_threshold": 1.0,
+    "zero_gradient_threshold": 1e-08,
+    "probe_count": 16,
+    "probe_dead_relu_threshold": 0.95,
+    "probe_gradient_threshold": 1e-08,
+    "output_dir": "results",
+    "min_cohort_size": 2,
+    "suppression_bias": -100.0,
+    "learning_rate": 0.01,
+    "local_epochs": 1,
+    "architecture_version": "NetflowClassifier-v1",
+    "loss_identifier": "CrossEntropyLoss",
+    "scenario_name": "C_sa_attack",
+    "run_dlg": true
+  },
+  {
+    "seed": 42,
+    "num_rounds": 2,
+    "batch_size": 1,
+    "target_client_id": 0,
+    "attack_rounds": [
+      0
+    ],
+    "aggregation_mode": "ideal_sa",
+    "attack_mode": "gradient_suppression",
+    "defense_mode": "zero_gradient_abort",
+    "dlg_iterations": 300,
+    "dlg_learning_rate": 0.1,
+    "dlg_rounds": [
+      0
+    ],
+    "attack_success_threshold": 1.0,
+    "zero_gradient_threshold": 1e-08,
+    "probe_count": 16,
+    "probe_dead_relu_threshold": 0.95,
+    "probe_gradient_threshold": 1e-08,
+    "output_dir": "results",
+    "min_cohort_size": 2,
+    "suppression_bias": -100.0,
+    "learning_rate": 0.01,
+    "local_epochs": 1,
+    "architecture_version": "NetflowClassifier-v1",
+    "loss_identifier": "CrossEntropyLoss",
+    "scenario_name": "D_sa_attack_zero_check",
+    "run_dlg": true
+  },
+  {
+    "seed": 42,
+    "num_rounds": 2,
+    "batch_size": 1,
+    "target_client_id": 0,
+    "attack_rounds": [
+      0
+    ],
+    "aggregation_mode": "ideal_sa",
+    "attack_mode": "gradient_suppression",
+    "defense_mode": "model_hash_consistency",
+    "dlg_iterations": 300,
+    "dlg_learning_rate": 0.1,
+    "dlg_rounds": [
+      0
+    ],
+    "attack_success_threshold": 1.0,
+    "zero_gradient_threshold": 1e-08,
+    "probe_count": 16,
+    "probe_dead_relu_threshold": 0.95,
+    "probe_gradient_threshold": 1e-08,
+    "output_dir": "results",
+    "min_cohort_size": 2,
+    "suppression_bias": -100.0,
+    "learning_rate": 0.01,
+    "local_epochs": 1,
+    "architecture_version": "NetflowClassifier-v1",
+    "loss_identifier": "CrossEntropyLoss",
+    "scenario_name": "E_sa_attack_hash",
+    "run_dlg": true
+  },
+  {
+    "seed": 42,
+    "num_rounds": 2,
+    "batch_size": 1,
+    "target_client_id": 0,
+    "attack_rounds": [
+      0
+    ],
+    "aggregation_mode": "ideal_sa",
+    "attack_mode": "gradient_suppression",
+    "defense_mode": "secret_probe",
+    "dlg_iterations": 300,
+    "dlg_learning_rate": 0.1,
+    "dlg_rounds": [
+      0
+    ],
+    "attack_success_threshold": 1.0,
+    "zero_gradient_threshold": 1e-08,
+    "probe_count": 16,
+    "probe_dead_relu_threshold": 0.95,
+    "probe_gradient_threshold": 1e-08,
+    "output_dir": "results",
+    "min_cohort_size": 2,
+    "suppression_bias": -100.0,
+    "learning_rate": 0.01,
+    "local_epochs": 1,
+    "architecture_version": "NetflowClassifier-v1",
+    "loss_identifier": "CrossEntropyLoss",
+    "scenario_name": "F_sa_attack_probe",
+    "run_dlg": true
+  }
+]
